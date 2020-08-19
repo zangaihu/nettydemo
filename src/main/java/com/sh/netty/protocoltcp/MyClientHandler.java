@@ -31,7 +31,7 @@ public class MyClientHandler extends SimpleChannelInboundHandler<MessageProtocol
             String mes="hello，i am client";
             byte[] content=mes.getBytes(StandardCharsets.UTF_8);
             int length=mes.getBytes(StandardCharsets.UTF_8).length;
-
+            //封装成MessageProtocol，然后经过编码器编码
             MessageProtocol messageProtocol=new MessageProtocol();
             messageProtocol.setLen(length);
             messageProtocol.setContent(content);
