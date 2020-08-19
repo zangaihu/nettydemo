@@ -13,13 +13,16 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class NettyServer {
 
     public static void main(String[] args) {
+        //两个group
+        //bossgroup，专门用来处理客户端的连接
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        //workgroup，专门用来处理读写事件
         EventLoopGroup workGruop = new NioEventLoopGroup();
 
-
         try{
-            //服务端的启动对象
+            //服务端的启动对象ServerBootStrap
             ServerBootstrap bootstrap=new ServerBootstrap();
+            //设置参数
             bootstrap.group(bossGroup, workGruop)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG,128)
